@@ -1,0 +1,15 @@
+"Attribute","factor1","factor2","path"
+"Price",-0.837114243681223,-0.0136332979395673,1
+"Convenience",0.184707158936539,0.932994531174782,1
+"Customer.Service",-0.876495358062643,-0.302649816287565,1
+"In.Store.Experience",0.683121406605956,-0.703105299237785,1
+"Product.Variety",0.728479186161706,0.201793446154994,1
+"Product.Quality",-0.809602351629457,-0.354029345016836,1
+"Location",-0.683630737982281,0.588524723191982,1
+"Price",0,0,0
+"Convenience",0,0,0
+"Customer.Service",0,0,0
+"In.Store.Experience",0,0,0
+"Product.Variety",0,0,0
+"Product.Quality",0,0,0
+"Location",0,0,0

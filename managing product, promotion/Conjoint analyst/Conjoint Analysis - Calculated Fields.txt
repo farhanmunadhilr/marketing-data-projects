@@ -1,0 +1,121 @@
+Brand
+MAX([CR],MAX([Apple],MAX([Samsung],[FitBit]))) - MIN([CR],MIN([Apple],MIN([Samsung],[FitBit])))
+
+Shipping
+MAX([$0],MAX([$10],[$20])) - MIN([$0],MIN([$10],[$20]))
+
+Restock
+MAX([0%],MAX([10%],[15%]))-MIN([0%],MIN([10%],[15%]))
+
+Return Days
+MAX([7 Days],MAX([14 Days],[21 Days])) - MIN([7 Days],MIN([14 Days],[21 Days]))
+
+Price
+MAX([$150],MAX([$200],MAX([$250],[$300])))-MIN([$150],MIN([$200],MIN([$250],[$300])))
+
+
+Brand %
+AVG([Brand])/(AVG([Brand]) + AVG([Shipping]) + AVG([Restock]) + AVG([Return Days]) + AVG([Price]))
+
+Shipping %
+AVG([Shipping])/(AVG([Brand]) + AVG([Shipping]) + AVG([Restock]) + AVG([Return Days]) + AVG([Price]))
+
+Restock %
+AVG([Restock])/(AVG([Brand]) + AVG([Shipping]) + AVG([Restock]) + AVG([Return Days]) + AVG([Price]))
+
+Return Days %
+AVG([Return Days])/(AVG([Brand]) + AVG([Shipping]) + AVG([Restock]) + AVG([Return Days]) + AVG([Price]))
+
+Price %
+AVG([Price])/(AVG([Brand]) + AVG([Shipping]) + AVG([Restock]) + AVG([Return Days]) + AVG([Price]))
+
+
+WTP – Brand Apple
+AVG([Apple])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Brand Samsung
+AVG([Samsung])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Brand FitBit
+AVG([FitBit])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Shipping $10
+AVG([$10])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Shipping $20
+AVG([$20])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Restock 5%
+AVG([5%])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Restock 10%
+AVG([10%])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Restock 15%
+AVG([15%])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Return Days 14
+AVG([14 days])*(150/(AVG([$150])-AVG([$300])))
+
+WTP – Return Days 21
+AVG([21 days])*(150/(AVG([$150])-AVG([$300])))
+
+
+Util – Apple
+[Intercept]+[Apple]+[$0]+[15%]+[7 Days]+[$200]
+
+Util – Samsung
+[Intercept]+[Samsung]+[$20]+[0%]+[14 Days]+[$300]
+
+Util – FitBit
+[Intercept]+[FitBit]+[$10]+[10%]+[14 Days]+[$250]
+
+
+First Choice – Apple
+IF MAX([Util – Apple],MAX([Util – Samsung],[Util – FitBit])) = [Util – Apple] THEN 1 ELSE 0 END
+
+First Choice – Samsung
+IF MAX([Util – Apple],MAX([Util – Samsung],[Util – FitBit])) = [Util – Samsung] THEN 1 ELSE 0 END
+
+First Choice - FitBit
+IF MAX([Util – Apple],MAX([Util – Samsung],[Util – FitBit])) = [Util – FitBit] THEN 1 ELSE 0 END
+
+
+Logit Share – Apple
+EXP([Util – Apple])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit]))
+
+Logit Share – Samsung
+EXP([Util – Samsung])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit]))
+
+Logit Share – FitBit
+EXP([Util – FitBit])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit]))
+
+
+Util – CR
+[Intercept]+[CR]+[$10]+[10%]+[14 Days]+[$250]
+
+
+First Choice – CR Proposed
+IF MAX([Util – Apple],MAX([Util – Samsung],MAX([Util – FitBit],[Util – CR]))) = [Util – CR] THEN 1 ELSE 0 END
+
+First Choice – Apple Proposed
+IF MAX([Util – Apple],MAX([Util – Samsung],MAX([Util – FitBit],[Util – CR]))) = [Util – Apple] THEN 1 ELSE 0 END
+
+First Choice – Samsung Proposed
+IF MAX([Util – Apple],MAX([Util – Samsung],MAX([Util – FitBit],[Util – CR]))) = [Util – Samsung] THEN 1 ELSE 0 END
+
+First Choice – FitBit Proposed
+IF MAX([Util – Apple],MAX([Util – Samsung],MAX([Util – FitBit],[Util – CR]))) = [Util – FitBit] THEN 1 ELSE 0 END
+
+
+Logit Share – CR Proposed
+EXP([Util – CR])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit])+EXP([Util – CR]))
+
+Logit Share – Apple Proposed
+EXP([Util – Apple])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit])+EXP([Util – CR]))
+
+Logit Share – Samsung Proposed
+EXP([Util – Samsung])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit])+EXP([Util – CR]))
+
+Logit Share – FitBit Proposed
+EXP([Util – FitBit])/(EXP([Util – Apple])+EXP([Util – Samsung])+EXP([Util – FitBit])+EXP([Util – CR]))
